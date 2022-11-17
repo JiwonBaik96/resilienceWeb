@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/main/css/map.css" />
+
+    <script type="module" src="/static/main/js/map.js"></script>
+
+{% endblock %}
+
+
+
+
+{% block body %}
+
+    <div id="map"></div>
+
+{% endblock %}
+
+
+{% block script %}
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGkdphbUoKXHT3V-zpqqGALA2uvV3adYA&callback=initMap"
+      defer
+    ></script>
+{% endblock %}
+
