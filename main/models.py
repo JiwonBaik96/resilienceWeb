@@ -18,6 +18,7 @@ class Lab(models.Model):
 
 
 class Data(TimeStampMixin):
+    title = models.CharField(max_length=10000, blank=False)
     path = models.CharField(max_length=10000, blank=False)
     source = models.ManyToManyField(Lab, related_name='labs', blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
