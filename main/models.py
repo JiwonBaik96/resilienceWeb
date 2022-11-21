@@ -1,5 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.conf import settings
+# Create your models here.
+
+
 
 
 class TimeStampMixin(models.Model):
@@ -18,7 +22,6 @@ class Lab(models.Model):
 
 
 class Data(TimeStampMixin):
-    title = models.CharField(max_length=10000, blank=False)
     path = models.CharField(max_length=10000, blank=False)
     source = models.ManyToManyField(Lab, related_name='labs', blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
