@@ -18,16 +18,16 @@
         <a class="nav-link" href="{% url 'main:data' %}">Data</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+        <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
       </li>
 
       {% else %}
 
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'main:login' %}">Login</a>
+        <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'main:register' %}">Register</a>
+        <a class="nav-link" href="{% url 'accounts:signup' %}">Register</a>
       </li>
 
       {% endif %}
