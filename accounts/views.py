@@ -16,39 +16,39 @@ def signup(request):
         if signup_form.is_valid():
             user = signup_form.save()
             auth_login(request, user)
-            messages.add_message(request, messages.SUCCESS, f'환영합니다 {user.username}님')
+            messages.add_message(request, messages.SUCCESS, f'Welcome {user.username}님')
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-        messages.add_message(request, messages.WARNING, f'사용자 정보를 다시한번 확인해 주세요!')
+        messages.add_message(request, messages.WARNING, f'Check the info again please')
     else:
         signup_form = CustomUserCreateForm()
-        return render(request=request, template_name="main/register.html", context={"register_form": signup_form})
+        return render(request=request, template_name="accounts/register.html", context={"register_form": signup_form})
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @require_http_methods(['GET', 'POST'])
 def login(request):
     if request.user.is_authenticated:
-        messages.add_message(request, messages.WARNING, f'한번에 한명만 로그인 할 수 있어요!')
+        messages.add_message(request, messages.WARNING, f'One authorized user at once')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
     if request.method == 'POST':
         login_form = CustomUserAuthenticationForm(request, data=request.POST)
         if login_form.is_valid():
             user = login_form.get_user()
             auth_login(request, login_form.get_user())
-            messages.add_message(request, messages.SUCCESS, f'환영합니다 {user.username}님')
+            messages.add_message(request, messages.SUCCESS, f'Welcome {user.username}님')
             return redirect("main:map")
 
         messages.add_message(request, messages.WARNING, f'ID와 비밀번호를 확인해 주세요!')
     else:
         login_form = CustomUserAuthenticationForm()
-        return render(request=request, template_name="main/login.html", context={"login_form": login_form})
+        return render(request=request, template_name="accounts/login.html", context={"login_form": login_form})
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @login_required
 def logout(request):
     user = request.user
-    messages.add_message(request, messages.SUCCESS, f'안녕하가세요 {user.username}님')
+    messages.add_message(request, messages.SUCCESS, f'Good Bye, {user.username}')
     auth_logout(request)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 

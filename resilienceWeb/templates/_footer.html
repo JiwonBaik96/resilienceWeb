@@ -1,10 +1,33 @@
-<footer class="bg-light text-center">
-  <!-- Grid container -->
-  <div class="container p-4 pb-0">
-  <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2022 Copyright:
-    <a class="text-dark" href="https://www.geog.ucsb.edu/">UCSB Geography</a>
+<footer class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom" style="height:56px;">
+  <a class="navbar-brand" href="{% url 'main:map' %}">WildFire</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="False" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      {% if user.is_authenticated %}
+
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'main:map' %}">Welcome, {{user.username}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'main:data' %}">Data</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+      </li>
+
+      {% else %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'accounts:signup' %}">Register</a>
+      </li>
+
+      {% endif %}
+    </ul>
   </div>
-  <!-- Copyright -->
 </footer>

@@ -1,8 +1,21 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <link rel="stylesheet" type="text/css" href="/static/main/css/map.css" />
+    <style>
+        #map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 56px;
+            right: 0;
+        }
 
+        #footer{
+            height: 100px;
+            width: 100%;
+        }
+
+    </style>
     <script type="module" src="/static/main/js/map.js"></script>
 
 {% endblock %}

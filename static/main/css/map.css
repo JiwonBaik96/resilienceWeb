@@ -1,12 +1,12 @@
+
 #map {
-  min-height: 82%;
-  width: 100%;
+height: 100%;
 }
 
-/*
- * Optional: Makes the sample page fill the window.
- */
-body {
+html, body {
+height: 100%;
+margin: 0;
+padding: 100;
 }
 .custom-map-control-button {
   background-color: #fff;
