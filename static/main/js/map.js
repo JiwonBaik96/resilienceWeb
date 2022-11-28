@@ -2,24 +2,58 @@
 // These methods toggle the visibility of the container <div>.
 // overlay to or from the map.
 
+
+let map, infoWindow;
+
+
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 11,
     center: { lat: 34.433907, lng: -119.809291 },
     mapTypeId: "satellite",
   });
+  infoWindow = new google.maps.InfoWindow();
   const bounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(34.3313407, -120.2913263),
     new google.maps.LatLng(34.5593061, -119.3617093)
   );
-  // The photograph is courtesy of the U.S. Geological Survey.
+
+  // location button
+  const locationButton = document.createElement("button");
+
+  locationButton.textContent = "Pan to Current Location";
+  locationButton.classList.add("custom-map-control-button");
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+  locationButton.addEventListener("click", () => {
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+
+          infoWindow.setPosition(pos);
+          infoWindow.setContent("Location found.");
+          infoWindow.open(map);
+          map.setCenter(pos);
+        },
+        () => {
+          handleLocationError(true, infoWindow, map.getCenter());
+        }
+      );
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+  });
+
+
+
+  // Custom Overlay
   let image = "/static/main/images/ih.png" ;
 
-//  image += "examples/full/images/talkeetna.png";
-  /**
-   * The custom USGSOverlay object contains the USGS image,
-   * the bounds of the image, and a reference to the map.
-   */
   class USGSOverlay extends google.maps.OverlayView {
     bounds;
     image;
@@ -139,5 +173,18 @@ function initMap() {
 //  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(toggleDOMButton);
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(toggleButton);
 }
+
+
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(
+    browserHasGeolocation
+      ? "Error: The Geolocation service failed."
+      : "Error: Your browser doesn't support geolocation."
+  );
+  infoWindow.open(map);
+}
+
 
 window.initMap = initMap;
