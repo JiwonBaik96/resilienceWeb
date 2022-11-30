@@ -10,4 +10,5 @@ urlpatterns = [
 
     path("data/", views.data, name="data"),
     path('download_file/<str:filename>/', views.download_file, name="download_file"),
+    path('nws', views.nws, name="nws")
 ]
