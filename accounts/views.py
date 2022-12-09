@@ -36,7 +36,7 @@ def login(request):
             user = login_form.get_user()
             auth_login(request, login_form.get_user())
             messages.add_message(request, messages.SUCCESS, f'Welcome {user.username}님')
-            return redirect("main:map")
+            return redirect("sitemap:map")
 
         messages.add_message(request, messages.WARNING, f'ID와 비밀번호를 확인해 주세요!')
     else:
