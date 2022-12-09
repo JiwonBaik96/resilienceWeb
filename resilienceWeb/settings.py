@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     'main',
     'crispy_forms',
     'accounts',
-    'sitemap.apps.SitemapConfig',
+    'sitemap'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
