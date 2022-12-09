@@ -6,12 +6,24 @@
 let map, infoWindow;
 
 
+
+
+
 function initMap() {
+
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 11,
     center: { lat: 34.433907, lng: -119.809291 },
-    mapTypeId: "satellite",
+    mapTypeId: google.maps.MapTypeId.SATELLITE,
+    streetViewControl: true
+
   });
+
+  const ctaLayer = new google.maps.KmlLayer({
+    url: '/static/main/images/q2.kmz',
+    map: map,
+  });
+
   infoWindow = new google.maps.InfoWindow();
   const bounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(34.3313407, -120.2913263),
@@ -49,6 +61,16 @@ function initMap() {
     }
   });
 
+  // kml Overlay
+  var kmlsrc = '/static/main/images/q2.kmz';
+
+    var kmzLayer = new google.maps.KmlLayer(kmlsrc, {
+      suppressInfoWindows: true,
+      preserveViewport: false,
+      map: map
+    });
+     console.log(kmzLayer)
+ kmzLayer.setMap(map);
 
 
   // Custom Overlay
@@ -75,7 +97,6 @@ function initMap() {
 
       // Create the img element and attach it to the div.
       const img = document.createElement("img");
-       console.log(img)
       img.src = this.image;
       img.style.width = "100%";
       img.style.height = "100%";
