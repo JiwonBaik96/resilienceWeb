@@ -9,6 +9,9 @@ import os
 from django.http.response import HttpResponse
 
 # Create your views here.
+
+def nws(request):
+	return render(request, 'main/nws.html', {})
 def map(request):
     return render(request, 'main/map.html', {})
 
