@@ -75,16 +75,18 @@ def map(request):
 #    clue = Geoclue.Simple.new_sync('something', Geoclue.AccuracyLevel.EXACT, None)
 #    location = clue.get_location()
 #    print(location.get_property('latitude'), location.get_property('longitude'))
-    if request.method == "POST":
-        address = request.POST.get('address')
-        print(address)
-        if address == '':
-            address = "ucsb"
-        location = geocoder.osm(address)
+    #if request.method == "POST":
+    #    address = request.POST.get('address')
+    #    print(address)
+    #    if address == '':
+    #        address = "ucsb"
+    #    location = geocoder.osm(address)
 
-    else:
-        location = geocoder.osm('ucsb')
+    #else:
+     #   location = geocoder.osm('ucsb')
 
+
+    location = geocoder.osm('ucsb')
     lat = location.lat
     lng = location.lng
 

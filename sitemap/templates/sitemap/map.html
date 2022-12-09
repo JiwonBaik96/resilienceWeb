@@ -5,7 +5,7 @@
     <style>
         #map {
             position: absolute;
-            top: 50;
+            top: 0;
             left: 0;
             bottom: 56px;
             right: 0;
@@ -35,11 +35,6 @@
 
 <div class="col-md-6">
 
-    <form class="form-inline my-1 my-lg-0" method="POST">
-        {% csrf_token %}
-        <input name="address" class="form-control mr-sm-1" type="search" placeholder="Search Location" aria-label="Search">
-        <button class="btn btn-outline-success my-1 my-sm-0" type="submit">Search</button>
-    </form>
 </div>
 
 <div id="map">
@@ -47,3 +42,10 @@
 </div>
 
 {% endblock %}
+
+
+
+    <form class="form-inline my-1 my-lg-0" method="POST">
+        <input name="address" class="form-control mr-sm-1" type="search" placeholder="Search Location" aria-label="Search">
+        <button class="btn btn-outline-success my-1 my-sm-0" type="submit">Search</button>
+    </form>

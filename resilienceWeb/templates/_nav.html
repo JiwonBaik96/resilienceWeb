@@ -1,8 +1,8 @@
 <!--Navbar-->
 {% load bootstrap4 %}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{% url 'main:map' %}">WildFire</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom" >
+  <a class="navbar-brand" href="{% url 'sitemap:map' %}">WildFire</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="False" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,7 +12,7 @@
 
 
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'main:map' %}">Welcome, {{user.username}}</a>
+        <a class="nav-link" href="{% url 'sitemap:map' %}">Welcome, {{user.username}}</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'main:data' %}">Data</a>
